@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import PostList from './components/PostList';
+import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav className="bg-gray-800 p-4">
+          <div className="container mx-auto">
+            <ul className="flex">
+              <li className="mr-6">
+                <Link to="/" className="text-white">Home</Link>
+              </li>
+              <li>
+                <Link to="/create" className="text-white">Create Post</Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div className="container mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            <Route path="/create" element={<CreatePost />} />
+            <Route path="/edit/:id" element={<EditPost />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
